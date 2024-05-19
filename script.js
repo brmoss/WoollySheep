@@ -15,11 +15,30 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
     const pixels = [];
     let lastColoredPixels = [];
-
     let isMouseDown = false;
+    let isTouchActive = false;
+    let touchTimeout;
 
     canvas.addEventListener('mousedown', () => isMouseDown = true);
     document.addEventListener('mouseup', () => isMouseDown = false);
+
+    canvas.addEventListener('touchstart', (e) => {
+        touchTimeout = setTimeout(() => {
+            isTouchActive = true;
+            handleTouch(e);
+        }, 200); // 200ms threshold for long press
+    });
+
+    canvas.addEventListener('touchmove', (e) => {
+        if (isTouchActive) {
+            handleTouch(e);
+        }
+    });
+
+    canvas.addEventListener('touchend', () => {
+        clearTimeout(touchTimeout);
+        isTouchActive = false;
+    });
 
     const createPixel = (isActive, rowIndex, colIndex) => {
         const pixel = document.createElement('div');
@@ -45,6 +64,16 @@ document.addEventListener('DOMContentLoaded', () => {
             selectPixel(pixel);
             selectAdjacentPixels(pixel);
         }
+    };
+
+    const handleTouch = (e) => {
+        const touch = e.touches[0];
+        const element = document.elementFromPoint(touch.clientX, touch.clientY);
+        if (element && element.classList.contains('pixel')) {
+            selectPixel(element);
+            selectAdjacentPixels(element);
+        }
+        e.preventDefault(); // Prevent scrolling while selecting pixels
     };
 
     const selectPixel = (pixel) => {
