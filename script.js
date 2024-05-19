@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const colorPicker = document.getElementById('colorPicker');
     const colorPixelsButton = document.getElementById('colorPixels');
     const clearPatternButton = document.getElementById('clearPattern');
+    const undoLastButton = document.getElementById('undoLast');
 
     const totalRows = 138;
     const totalColumns = 107;
@@ -13,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { start: 117, end: 138, columns: 73, padding: 17 },
     ];
     const pixels = [];
+    let lastColoredPixels = [];
 
     let isMouseDown = false;
 
@@ -122,12 +124,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     colorPixelsButton.addEventListener('click', () => {
         const selectedColor = colorPicker.value;
+        lastColoredPixels = [];
+
         pixels.forEach(pixel => {
             if (pixel.classList.contains('selected')) {
+                lastColoredPixels.push({ pixel: pixel, originalColor: pixel.style.backgroundColor });
                 pixel.style.backgroundColor = selectedColor;
                 pixel.classList.remove('selected');
             }
         });
+    });
+
+    undoLastButton.addEventListener('click', () => {
+        lastColoredPixels.forEach(item => {
+            item.pixel.style.backgroundColor = item.originalColor;
+        });
+        lastColoredPixels = [];
     });
 
     clearPatternButton.addEventListener('click', () => {
@@ -135,5 +147,6 @@ document.addEventListener('DOMContentLoaded', () => {
             pixel.style.backgroundColor = 'white';
             pixel.classList.remove('selected');
         });
+        lastColoredPixels = [];
     });
 });
