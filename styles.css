@@ -16,7 +16,7 @@ body {
   gap: 10px; /* Space between the buttons */
 }
 
-button, input[type="color"] {
+button, #colorPickerContainer {
   padding: 10px 20px;
   font-size: 16px;
   border: none;
@@ -24,14 +24,17 @@ button, input[type="color"] {
   cursor: pointer;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Space between icon and text */
 }
 
-button:hover {
+button:hover, #colorPickerContainer:hover {
   background-color: #e0e0e0; /* Slightly darker on hover */
   transform: translateY(-2px); /* Lift on hover */
 }
 
-button:active {
+button:active, #colorPickerContainer:active {
   background-color: #d0d0d0; /* Darker when pressed */
   transform: translateY(0); /* Reset lift on click */
 }
@@ -51,6 +54,16 @@ button:active {
   color: white;
 }
 
+#colorPickerContainer {
+  background-color: white;
+  padding: 10px;
+}
+
+#colorPickerContainer i {
+  font-size: 24px;
+  color: #000;
+}
+
 input[type="color"] {
   padding: 0;
   width: 40px;
@@ -61,7 +74,7 @@ input[type="color"] {
   -webkit-appearance: none;
   appearance: none;
   background: none;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: none;
 }
 
 input[type="color"]::-webkit-color-swatch-wrapper {
