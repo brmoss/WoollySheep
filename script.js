@@ -40,31 +40,20 @@ document.addEventListener('DOMContentLoaded', () => {
         isTouchActive = false;
     });
 
-    const createPixel = (isActive, rowIndex, colIndex) => {
-        const pixel = document.createElement('div');
-        pixel.classList.add('pixel');
-        pixel.dataset.rowIndex = rowIndex;
-        pixel.dataset.colIndex = colIndex;
-
-        if (isActive) {
-            pixel.addEventListener('click', () => toggleSelect(pixel));
-            pixel.addEventListener('mouseover', (e) => handleMouseOver(e, pixel));
-        } else {
-            pixel.classList.add('non-selectable');
+    canvas.addEventListener('click', (e) => {
+        const pixel = e.target;
+        if (pixel.classList.contains('pixel')) {
+            toggleSelect(pixel);
         }
-        return pixel;
-    };
+    });
 
-    const toggleSelect = (pixel) => {
-        pixel.classList.toggle('selected');
-    };
-
-    const handleMouseOver = (e, pixel) => {
-        if (isMouseDown) {
+    canvas.addEventListener('mouseover', (e) => {
+        const pixel = e.target;
+        if (isMouseDown && pixel.classList.contains('pixel')) {
             selectPixel(pixel);
             selectAdjacentPixels(pixel);
         }
-    };
+    });
 
     const handleTouch = (e) => {
         const touch = e.touches[0];
@@ -74,6 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
             selectAdjacentPixels(element);
         }
         e.preventDefault(); // Prevent scrolling while selecting pixels
+    };
+
+    const toggleSelect = (pixel) => {
+        pixel.classList.toggle('selected');
     };
 
     const selectPixel = (pixel) => {
@@ -92,16 +85,38 @@ document.addEventListener('DOMContentLoaded', () => {
             [1, -1], [1, 0], [1, 1]
         ];
 
+        const pixelsToSelect = [pixel];
+
         adjacentOffsets.forEach(offset => {
             const adjRowIndex = rowIndex + offset[0];
             const adjColIndex = colIndex + offset[1];
             if (adjRowIndex >= 1 && adjRowIndex <= totalRows && adjColIndex >= 1 && adjColIndex <= totalColumns) {
                 const adjPixel = pixels.find(p => parseInt(p.dataset.rowIndex) === adjRowIndex && parseInt(p.dataset.colIndex) === adjColIndex);
-                if (adjPixel) {
-                    selectPixel(adjPixel);
+                if (adjPixel && !adjPixel.classList.contains('selected')) {
+                    pixelsToSelect.push(adjPixel);
                 }
             }
         });
+
+        batchSelectPixels(pixelsToSelect);
+    };
+
+    const batchSelectPixels = (pixelsToSelect) => {
+        requestAnimationFrame(() => {
+            pixelsToSelect.forEach(pixel => pixel.classList.add('selected'));
+        });
+    };
+
+    const createPixel = (isActive, rowIndex, colIndex) => {
+        const pixel = document.createElement('div');
+        pixel.classList.add('pixel');
+        pixel.dataset.rowIndex = rowIndex;
+        pixel.dataset.colIndex = colIndex;
+
+        if (!isActive) {
+            pixel.classList.add('non-selectable');
+        }
+        return pixel;
     };
 
     const rows = [];
@@ -155,27 +170,33 @@ document.addEventListener('DOMContentLoaded', () => {
         const selectedColor = colorPicker.value;
         lastColoredPixels = [];
 
-        pixels.forEach(pixel => {
-            if (pixel.classList.contains('selected')) {
-                lastColoredPixels.push({ pixel: pixel, originalColor: pixel.style.backgroundColor });
-                pixel.style.backgroundColor = selectedColor;
-                pixel.classList.remove('selected');
-            }
+        requestAnimationFrame(() => {
+            pixels.forEach(pixel => {
+                if (pixel.classList.contains('selected')) {
+                    lastColoredPixels.push({ pixel: pixel, originalColor: pixel.style.backgroundColor });
+                    pixel.style.backgroundColor = selectedColor;
+                    pixel.classList.remove('selected');
+                }
+            });
         });
     });
 
     undoLastButton.addEventListener('click', () => {
-        lastColoredPixels.forEach(item => {
-            item.pixel.style.backgroundColor = item.originalColor;
+        requestAnimationFrame(() => {
+            lastColoredPixels.forEach(item => {
+                item.pixel.style.backgroundColor = item.originalColor;
+            });
+            lastColoredPixels = [];
         });
-        lastColoredPixels = [];
     });
 
     clearPatternButton.addEventListener('click', () => {
-        pixels.forEach(pixel => {
-            pixel.style.backgroundColor = 'white';
-            pixel.classList.remove('selected');
+        requestAnimationFrame(() => {
+            pixels.forEach(pixel => {
+                pixel.style.backgroundColor = 'white';
+                pixel.classList.remove('selected');
+            });
+            lastColoredPixels = [];
         });
-        lastColoredPixels = [];
     });
 });
