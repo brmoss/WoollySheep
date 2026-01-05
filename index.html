@@ -15,10 +15,50 @@
         </div>
         <button id="colorPixels">Colour Pixels</button>
         <button id="clearPattern">Clear Pattern</button>
-        <button id="undoLast">Undo Last</button>
+        <button id="undoBtn" disabled><i class="fas fa-undo"></i> Undo</button>
+        <button id="redoBtn" disabled><i class="fas fa-redo"></i> Redo</button>
+        <button id="savePattern"><i class="fas fa-save"></i> Save</button>
+        <button id="loadPattern"><i class="fas fa-folder-open"></i> Load</button>
     </div>
+
+    <!-- Pattern Manager Modal -->
+    <div id="patternModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2 id="modalTitle">Save Pattern</h2>
+
+            <!-- Save Section -->
+            <div id="saveSection">
+                <div class="input-group">
+                    <label for="patternName">Pattern Name:</label>
+                    <input type="text" id="patternName" placeholder="Enter pattern name">
+                </div>
+                <button id="confirmSave" class="modal-btn save-btn">Save Pattern</button>
+            </div>
+
+            <!-- Load Section -->
+            <div id="loadSection" style="display: none;">
+                <div id="patternList">
+                    <p id="noPatterns">No saved patterns found.</p>
+                </div>
+            </div>
+
+            <!-- Notification -->
+            <div id="modalNotification" class="notification"></div>
+        </div>
+    </div>
+
     <div id="canvas-container">
-        <div id="canvas"></div>
+        <div id="canvas-wrapper">
+            <div id="canvas"></div>
+        </div>
+    </div>
+
+    <div id="zoom-controls">
+        <button id="zoom-out" title="Zoom Out (Ctrl/Cmd + -)">-</button>
+        <span id="zoom-level" title="Double-click to reset">100%</span>
+        <button id="zoom-in" title="Zoom In (Ctrl/Cmd + +)">+</button>
+        <button id="zoom-reset" title="Reset Zoom (Ctrl/Cmd + 0)">Reset</button>
     </div>
 
     <script src="script.js"></script>
