@@ -3,8 +3,9 @@ import { getSavedPatterns, savePattern, loadPatternByName, deletePattern } from 
 let modal, modalTitle, saveSection, loadSection;
 let patternNameInput, confirmSaveButton, patternList, noPatterns;
 let modalNotification;
+let refreshMinimapCallback = null;
 
-export const initUI = (elements) => {
+export const initUI = (elements, minimapCallback = null) => {
     modal = elements.modal;
     modalTitle = elements.modalTitle;
     saveSection = elements.saveSection;
@@ -14,6 +15,7 @@ export const initUI = (elements) => {
     patternList = elements.patternList;
     noPatterns = elements.noPatterns;
     modalNotification = elements.modalNotification;
+    refreshMinimapCallback = minimapCallback;
 };
 
 export const escapeHtml = (text) => {

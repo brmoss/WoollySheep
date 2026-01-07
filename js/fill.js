@@ -5,11 +5,13 @@ import { pushToUndoStack } from './history.js';
 let fillBtn;
 let colorPicker;
 let triggerAutoSaveCallback = null;
+let refreshMinimapCallback = null;
 
-export const initFill = (fillButton, colorPickerElement, autoSaveCallback) => {
+export const initFill = (fillButton, colorPickerElement, autoSaveCallback, minimapCallback = null) => {
     fillBtn = fillButton;
     colorPicker = colorPickerElement;
     triggerAutoSaveCallback = autoSaveCallback;
+    refreshMinimapCallback = minimapCallback;
 };
 
 export const toggleFillMode = () => {
@@ -85,5 +87,6 @@ export const handleFillClick = (pixel) => {
     if (changes.length > 0) {
         pushToUndoStack({ changes });
         if (triggerAutoSaveCallback) triggerAutoSaveCallback();
+        if (refreshMinimapCallback) refreshMinimapCallback();
     }
 };

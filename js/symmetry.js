@@ -4,12 +4,14 @@ import { pushToUndoStack } from './history.js';
 
 let mirrorHBtn, mirrorVBtn, canvasWrapper;
 let triggerAutoSaveCallback = null;
+let refreshMinimapCallback = null;
 
-export const initSymmetry = (mirrorHButton, mirrorVButton, wrapper, autoSaveCallback) => {
+export const initSymmetry = (mirrorHButton, mirrorVButton, wrapper, autoSaveCallback, minimapCallback = null) => {
     mirrorHBtn = mirrorHButton;
     mirrorVBtn = mirrorVButton;
     canvasWrapper = wrapper;
     triggerAutoSaveCallback = autoSaveCallback;
+    refreshMinimapCallback = minimapCallback;
 };
 
 export const getMirroredColumn = (col) => TOTAL_COLUMNS - col + 1;
@@ -157,6 +159,7 @@ export const reflectPatternH = () => {
     if (changes.length > 0) {
         pushToUndoStack({ changes });
         if (triggerAutoSaveCallback) triggerAutoSaveCallback();
+        if (refreshMinimapCallback) refreshMinimapCallback();
     }
 };
 
@@ -191,5 +194,6 @@ export const reflectPatternV = () => {
     if (changes.length > 0) {
         pushToUndoStack({ changes });
         if (triggerAutoSaveCallback) triggerAutoSaveCallback();
+        if (refreshMinimapCallback) refreshMinimapCallback();
     }
 };

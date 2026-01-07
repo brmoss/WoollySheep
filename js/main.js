@@ -8,8 +8,47 @@ import { initZoom, zoomIn, zoomOut, resetZoom } from './zoom.js';
 import { initPersistence, triggerAutoSave, loadAutoSave } from './persistence.js';
 import { initUI, openSaveModal, openLoadModal, closeModal, handleConfirmSave } from './ui.js';
 import { initExport } from './export.js';
+import { initMinimap, refreshMinimap } from './minimap.js';
+import { initRowHighlight, toggleHighlightMode, prevRow, nextRow, handleRowInputChange, handleRowHighlightKeydown } from './rowHighlight.js';
+
+// ===== DARK MODE FUNCTIONALITY =====
+const DARK_MODE_KEY = 'woollySheepDarkMode';
+
+function initDarkMode() {
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const savedDarkMode = localStorage.getItem(DARK_MODE_KEY);
+
+    // Load saved preference or default to light mode
+    if (savedDarkMode === 'true') {
+        document.body.classList.add('dark-mode');
+        updateDarkModeIcon(true);
+    }
+
+    // Toggle dark mode on button click
+    darkModeToggle.addEventListener('click', () => {
+        const isDarkMode = document.body.classList.toggle('dark-mode');
+        localStorage.setItem(DARK_MODE_KEY, isDarkMode);
+        updateDarkModeIcon(isDarkMode);
+    });
+}
+
+function updateDarkModeIcon(isDarkMode) {
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const icon = darkModeToggle.querySelector('i');
+
+    if (isDarkMode) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+    } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+    }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize dark mode first for smooth loading
+    initDarkMode();
+
     // DOM Elements
     const canvas = document.getElementById('canvas');
     const colorPicker = document.getElementById('colorPicker');
@@ -47,10 +86,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const zoomResetButton = document.getElementById('zoom-reset');
     const zoomLevelDisplay = document.getElementById('zoom-level');
 
+    // Row highlight elements
+    const highlightToggleBtn = document.getElementById('highlightToggle');
+    const highlightRowControls = document.getElementById('highlightRowControls');
+    const rowInput = document.getElementById('rowInput');
+    const prevRowBtn = document.getElementById('prevRowBtn');
+    const nextRowBtn = document.getElementById('nextRowBtn');
+
     // Initialize modules
     initHistory(undoBtn, redoBtn);
-    initSymmetry(mirrorHBtn, mirrorVBtn, canvasWrapper, triggerAutoSave);
-    initFill(fillBtn, colorPicker, triggerAutoSave);
     initZoom(canvasWrapper, zoomLevelDisplay);
     initPersistence();
     initUI({
@@ -58,9 +102,19 @@ document.addEventListener('DOMContentLoaded', () => {
         patternNameInput, confirmSaveButton, patternList, noPatterns, modalNotification
     });
     initExport(exportPNGBtn, exportTextBtn, exportPDFBtn);
+    initRowHighlight(highlightToggleBtn, highlightRowControls, rowInput, prevRowBtn, nextRowBtn);
 
     // Build canvas
     buildCanvas(canvas);
+
+    // Initialize mini-map (after canvas is built)
+    const minimapContainer = document.getElementById('minimap-container');
+    const canvasContainer = document.getElementById('canvas-container');
+    initMinimap(minimapContainer, canvasContainer, canvasWrapper);
+
+    // Initialize modules that need refreshMinimap callback (after minimap init)
+    initSymmetry(mirrorHBtn, mirrorVBtn, canvasWrapper, triggerAutoSave, refreshMinimap);
+    initFill(fillBtn, colorPicker, triggerAutoSave, refreshMinimap);
 
     // Touch handling helper
     const handleTouch = (e) => {
@@ -160,6 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
             pushToUndoStack({ changes });
             if (changes.length > 0) {
                 triggerAutoSave();
+                refreshMinimap();
             }
         });
     });
@@ -188,18 +243,31 @@ document.addEventListener('DOMContentLoaded', () => {
             pushToUndoStack({ changes });
             if (changes.length > 0) {
                 triggerAutoSave();
+                refreshMinimap();
             }
         });
     });
 
     // Button event listeners
-    undoBtn.addEventListener('click', () => undo(triggerAutoSave));
-    redoBtn.addEventListener('click', () => redo(triggerAutoSave));
+    undoBtn.addEventListener('click', () => { undo(triggerAutoSave); refreshMinimap(); });
+    redoBtn.addEventListener('click', () => { redo(triggerAutoSave); refreshMinimap(); });
     fillBtn.addEventListener('click', toggleFillMode);
     mirrorHBtn.addEventListener('click', toggleMirrorH);
     mirrorVBtn.addEventListener('click', toggleMirrorV);
     reflectHBtn.addEventListener('click', reflectPatternH);
     reflectVBtn.addEventListener('click', reflectPatternV);
+
+    // Row highlight event listeners
+    highlightToggleBtn.addEventListener('click', toggleHighlightMode);
+    prevRowBtn.addEventListener('click', prevRow);
+    nextRowBtn.addEventListener('click', nextRow);
+    rowInput.addEventListener('change', handleRowInputChange);
+    rowInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            handleRowInputChange(e);
+            rowInput.blur();
+        }
+    });
 
     // Zoom event listeners
     zoomInButton.addEventListener('click', zoomIn);
@@ -228,6 +296,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Keyboard shortcuts
     document.addEventListener('keydown', (e) => {
+        // Handle row highlight keyboard navigation first
+        if (handleRowHighlightKeydown(e)) {
+            return;
+        }
+
         if (e.key === 'Escape') {
             if (modal.classList.contains('show')) {
                 closeModal();
@@ -253,9 +326,11 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (e.key === 'z' && !e.shiftKey) {
                 e.preventDefault();
                 undo(triggerAutoSave);
+                refreshMinimap();
             } else if (e.key === 'y' || (e.key === 'z' && e.shiftKey) || (e.key === 'Z' && e.shiftKey)) {
                 e.preventDefault();
                 redo(triggerAutoSave);
+                refreshMinimap();
             }
         }
     });
@@ -275,4 +350,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize
     updateUndoRedoButtons();
     loadAutoSave();
+    refreshMinimap();
 });

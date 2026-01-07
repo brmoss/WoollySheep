@@ -25,6 +25,10 @@ export const state = {
     // Zoom state
     currentZoom: 1,
 
+    // Row highlight state
+    highlightRowEnabled: false,
+    highlightedRow: 1,
+
     // Timers
     touchTimeout: null,
     autoSaveTimeout: null,

@@ -10,6 +10,7 @@
 </head>
 <body>
     <div id="controls">
+        <button id="darkModeToggle" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
         <div id="colorPickerContainer">
             <i class="fas fa-fill-drip"></i>
             <input type="color" id="colorPicker" value="#000000">
@@ -29,6 +30,14 @@
             <button id="mirrorV" class="mirror-btn" title="Vertical Mirror mode (top-bottom)"><i class="fas fa-arrows-alt-v"></i> Mirror V</button>
             <button id="reflectH" class="reflect-btn" title="Reflect existing pattern horizontally"><i class="fas fa-exchange-alt"></i> Reflect H</button>
             <button id="reflectV" class="reflect-btn" title="Reflect existing pattern vertically"><i class="fas fa-exchange-alt fa-rotate-90"></i> Reflect V</button>
+        </div>
+        <div class="highlight-controls">
+            <button id="highlightToggle" class="highlight-btn" title="Toggle row highlighting (use Up/Down arrows to navigate)"><i class="fas fa-highlighter"></i> Highlight Row</button>
+            <div id="highlightRowControls" class="highlight-row-controls">
+                <button id="prevRowBtn" title="Previous row (Down arrow)"><i class="fas fa-chevron-down"></i></button>
+                <input type="number" id="rowInput" min="1" max="138" value="1" title="Current row number">
+                <button id="nextRowBtn" title="Next row (Up arrow)"><i class="fas fa-chevron-up"></i></button>
+            </div>
         </div>
     </div>
 
@@ -63,6 +72,9 @@
         <div id="canvas-wrapper">
             <div id="canvas"></div>
         </div>
+    </div>
+
+    <div id="minimap-container" title="Click to navigate">
     </div>
 
     <div id="zoom-controls">
