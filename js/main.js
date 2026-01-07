@@ -80,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalNotification = document.getElementById('modalNotification');
 
     // Zoom elements
+    const canvasContainer = document.getElementById('canvas-container');
     const canvasWrapper = document.getElementById('canvas-wrapper');
     const zoomInButton = document.getElementById('zoom-in');
     const zoomOutButton = document.getElementById('zoom-out');
@@ -109,7 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize mini-map (after canvas is built)
     const minimapContainer = document.getElementById('minimap-container');
-    const canvasContainer = document.getElementById('canvas-container');
     initMinimap(minimapContainer, canvasContainer, canvasWrapper);
 
     // Initialize modules that need refreshMinimap callback (after minimap init)
