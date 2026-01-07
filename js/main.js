@@ -54,7 +54,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     initDarkMode();
 
     // Load jumper configurations before building canvas
-    await initJumperConfigs();
+    try {
+        await initJumperConfigs();
+    } catch (err) {
+        console.warn('Failed to load jumper configs, using fallback:', err);
+    }
 
     // DOM Elements
     const canvas = document.getElementById('canvas');

@@ -54,6 +54,9 @@ export const initSidebar = (options = {}) => {
     initPortingModal();
     injectPortingModalStyles();
 
+    // Start with sidebar collapsed by default
+    sidebarElement.classList.add('collapsed');
+
     // Set up event listeners
     setupEventListeners();
 
