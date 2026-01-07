@@ -1,7 +1,7 @@
 import { state } from './state.js';
 import { buildCanvas } from './canvas.js';
-import { initHistory, updateUndoRedoButtons, pushToUndoStack, undo, redo } from './history.js';
-import { initSymmetry, toggleMirrorH, toggleMirrorV, reflectPatternH, reflectPatternV } from './symmetry.js';
+import { initHistory, updateUndoRedoButtons, pushToUndoStack, undo, redo, clearHistory } from './history.js';
+import { initSymmetry, toggleMirrorH, toggleMirrorV, reflectPatternH, reflectPatternV, updateSymmetryLines } from './symmetry.js';
 import { toggleSelect, selectPixel, selectAdjacentPixels, clearSelection } from './selection.js';
 import { initFill, toggleFillMode, handleFillClick } from './fill.js';
 import { initZoom, zoomIn, zoomOut, resetZoom } from './zoom.js';
@@ -10,6 +10,10 @@ import { initUI, openSaveModal, openLoadModal, closeModal, handleConfirmSave } f
 import { initExport } from './export.js';
 import { initMinimap, refreshMinimap } from './minimap.js';
 import { initRowHighlight, toggleHighlightMode, prevRow, nextRow, handleRowInputChange, handleRowHighlightKeydown } from './rowHighlight.js';
+import { initJumperConfigs } from './jumperConfigs.js';
+import { initCanvasManager } from './canvasManager.js';
+import { initPanelManager } from './panelManager.js';
+import { initSidebar, updateSidebarUI } from './sidebar.js';
 
 // ===== DARK MODE FUNCTIONALITY =====
 const DARK_MODE_KEY = 'woollySheepDarkMode';
@@ -45,9 +49,12 @@ function updateDarkModeIcon(isDarkMode) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     // Initialize dark mode first for smooth loading
     initDarkMode();
+
+    // Load jumper configurations before building canvas
+    await initJumperConfigs();
 
     // DOM Elements
     const canvas = document.getElementById('canvas');
@@ -115,6 +122,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize modules that need refreshMinimap callback (after minimap init)
     initSymmetry(mirrorHBtn, mirrorVBtn, canvasWrapper, triggerAutoSave, refreshMinimap);
     initFill(fillBtn, colorPicker, triggerAutoSave, refreshMinimap);
+
+    // Initialize canvas manager for jumper switching
+    initCanvasManager({
+        canvas: canvas,
+        refreshMinimap: refreshMinimap,
+        clearHistory: clearHistory,
+        updateSymmetry: updateSymmetryLines
+    });
+
+    // Initialize panel manager for front/back toggle
+    initPanelManager({
+        refreshMinimap: refreshMinimap,
+        clearHistory: clearHistory,
+        updatePanelUI: updateSidebarUI
+    });
+
+    // Initialize sidebar
+    initSidebar({
+        refreshMinimap: refreshMinimap
+    });
 
     // Touch handling helper
     const handleTouch = (e) => {

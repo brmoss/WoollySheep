@@ -1,0 +1,83 @@
+{
+  "id": "set-in-sleeve-standard",
+  "name": "Set-in Sleeve Jumper",
+  "type": "set-in-sleeve",
+  "version": "1.0.0",
+  "description": "Classic fitted jumper with shaped armholes and set-in sleeves",
+  "sizes": {
+    "XS": {
+      "bustCircumference": 32,
+      "totalRows": 118,
+      "maxColumns": 85,
+      "rowsConfig": [
+        { "start": 1, "end": 75, "columns": 85 },
+        { "start": 76, "end": 78, "startColumns": 85, "step": -3 },
+        { "start": 79, "end": 95, "columns": 76 },
+        { "start": 96, "end": 100, "startColumns": 76, "step": -4 },
+        { "start": 101, "end": 118, "columns": 56, "padding": 15 }
+      ],
+      "centerColumn": 43,
+      "centerRow": 59
+    },
+    "S": {
+      "bustCircumference": 34,
+      "totalRows": 125,
+      "maxColumns": 91,
+      "rowsConfig": [
+        { "start": 1, "end": 80, "columns": 91 },
+        { "start": 81, "end": 83, "startColumns": 91, "step": -3 },
+        { "start": 84, "end": 100, "columns": 82 },
+        { "start": 101, "end": 106, "startColumns": 82, "step": -4 },
+        { "start": 107, "end": 125, "columns": 58, "padding": 17 }
+      ],
+      "centerColumn": 46,
+      "centerRow": 63
+    },
+    "M": {
+      "bustCircumference": 36,
+      "totalRows": 132,
+      "maxColumns": 99,
+      "rowsConfig": [
+        { "start": 1, "end": 85, "columns": 99 },
+        { "start": 86, "end": 88, "startColumns": 99, "step": -3 },
+        { "start": 89, "end": 107, "columns": 90 },
+        { "start": 108, "end": 113, "startColumns": 90, "step": -4 },
+        { "start": 114, "end": 132, "columns": 66, "padding": 17 }
+      ],
+      "centerColumn": 50,
+      "centerRow": 66
+    },
+    "L": {
+      "bustCircumference": 38,
+      "totalRows": 140,
+      "maxColumns": 107,
+      "rowsConfig": [
+        { "start": 1, "end": 90, "columns": 107 },
+        { "start": 91, "end": 93, "startColumns": 107, "step": -3 },
+        { "start": 94, "end": 114, "columns": 98 },
+        { "start": 115, "end": 121, "startColumns": 98, "step": -4 },
+        { "start": 122, "end": 140, "columns": 70, "padding": 19 }
+      ],
+      "centerColumn": 54,
+      "centerRow": 70
+    },
+    "XL": {
+      "bustCircumference": 40,
+      "totalRows": 148,
+      "maxColumns": 115,
+      "rowsConfig": [
+        { "start": 1, "end": 95, "columns": 115 },
+        { "start": 96, "end": 98, "startColumns": 115, "step": -3 },
+        { "start": 99, "end": 120, "columns": 106 },
+        { "start": 121, "end": 128, "startColumns": 106, "step": -4 },
+        { "start": 129, "end": 148, "columns": 74, "padding": 21 }
+      ],
+      "centerColumn": 58,
+      "centerRow": 74
+    }
+  },
+  "panelSymmetry": {
+    "frontBackMirrored": true,
+    "horizontalSymmetry": true
+  }
+}

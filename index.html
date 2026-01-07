@@ -9,6 +9,83 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
+    <!-- Jumper Settings Sidebar -->
+    <aside id="jumper-sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h3>Jumper Settings</h3>
+            <button id="sidebarToggle" class="sidebar-toggle" title="Toggle sidebar (Ctrl+B)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-content">
+            <!-- Jumper Type Selection -->
+            <div class="sidebar-section">
+                <label for="jumperTypeSelect">Jumper Style</label>
+                <select id="jumperTypeSelect">
+                    <option value="raglan-standard">Raglan Jumper</option>
+                </select>
+            </div>
+
+            <!-- Size Selection -->
+            <div class="sidebar-section">
+                <label>Size</label>
+                <div class="size-buttons">
+                    <button data-size="XS">XS (32")</button>
+                    <button data-size="S">S (34")</button>
+                    <button data-size="M" class="active">M (36")</button>
+                    <button data-size="L">L (38")</button>
+                    <button data-size="XL">XL (40")</button>
+                </div>
+            </div>
+
+            <!-- Panel Toggle -->
+            <div class="sidebar-section">
+                <label>Panel</label>
+                <div class="panel-toggle">
+                    <button id="panelFrontBtn" class="panel-btn active">
+                        <i class="fas fa-tshirt"></i>
+                        <span>Front</span>
+                    </button>
+                    <button id="panelBackBtn" class="panel-btn">
+                        <i class="fas fa-tshirt fa-flip-horizontal"></i>
+                        <span>Back</span>
+                    </button>
+                </div>
+                <button id="copyPanelBtn" class="secondary-btn">
+                    <i class="fas fa-clone"></i> Copy to Other Panel
+                </button>
+            </div>
+
+            <!-- Dimensions Display -->
+            <div class="sidebar-section dimensions-info">
+                <label>Current Dimensions</label>
+                <div class="dimensions-grid">
+                    <span>Rows:</span><span id="currentRows">138</span>
+                    <span>Columns:</span><span id="currentColumns">107</span>
+                </div>
+            </div>
+
+            <!-- Design Stats -->
+            <div class="sidebar-section design-stats">
+                <label>Design Progress</label>
+                <div class="stats-grid">
+                    <span>Front:</span><span><span id="frontPixelCount">0</span> pixels</span>
+                    <span>Back:</span><span><span id="backPixelCount">0</span> pixels</span>
+                </div>
+            </div>
+
+            <!-- Custom Config Upload -->
+            <div class="sidebar-section">
+                <label>Custom Configuration</label>
+                <button id="uploadConfigBtn" class="secondary-btn">
+                    <i class="fas fa-upload"></i> Upload JSON Config
+                </button>
+                <input type="file" id="configFileInput" accept=".json" hidden>
+            </div>
+        </div>
+    </aside>
+
     <div id="controls">
         <button id="darkModeToggle" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
         <div id="colorPickerContainer">

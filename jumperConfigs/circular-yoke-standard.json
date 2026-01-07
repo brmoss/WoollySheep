@@ -1,0 +1,93 @@
+{
+  "id": "circular-yoke-standard",
+  "name": "Circular Yoke Jumper",
+  "type": "circular-yoke",
+  "version": "1.0.0",
+  "description": "Seamless yoke construction with evenly distributed decreases, ideal for colorwork",
+  "sizes": {
+    "XS": {
+      "bustCircumference": 32,
+      "totalRows": 125,
+      "maxColumns": 87,
+      "rowsConfig": [
+        { "start": 1, "end": 75, "columns": 87 },
+        { "start": 76, "end": 85, "columns": 87 },
+        { "start": 86, "end": 90, "startColumns": 87, "step": -4 },
+        { "start": 91, "end": 100, "columns": 67 },
+        { "start": 101, "end": 105, "startColumns": 67, "step": -4 },
+        { "start": 106, "end": 115, "columns": 47 },
+        { "start": 116, "end": 125, "columns": 47, "padding": 20 }
+      ],
+      "centerColumn": 44,
+      "centerRow": 63
+    },
+    "S": {
+      "bustCircumference": 34,
+      "totalRows": 132,
+      "maxColumns": 93,
+      "rowsConfig": [
+        { "start": 1, "end": 80, "columns": 93 },
+        { "start": 81, "end": 90, "columns": 93 },
+        { "start": 91, "end": 95, "startColumns": 93, "step": -4 },
+        { "start": 96, "end": 106, "columns": 73 },
+        { "start": 107, "end": 111, "startColumns": 73, "step": -4 },
+        { "start": 112, "end": 122, "columns": 53 },
+        { "start": 123, "end": 132, "columns": 53, "padding": 20 }
+      ],
+      "centerColumn": 47,
+      "centerRow": 66
+    },
+    "M": {
+      "bustCircumference": 36,
+      "totalRows": 140,
+      "maxColumns": 101,
+      "rowsConfig": [
+        { "start": 1, "end": 85, "columns": 101 },
+        { "start": 86, "end": 95, "columns": 101 },
+        { "start": 96, "end": 100, "startColumns": 101, "step": -4 },
+        { "start": 101, "end": 112, "columns": 81 },
+        { "start": 113, "end": 118, "startColumns": 81, "step": -4 },
+        { "start": 119, "end": 130, "columns": 57 },
+        { "start": 131, "end": 140, "columns": 57, "padding": 22 }
+      ],
+      "centerColumn": 51,
+      "centerRow": 70
+    },
+    "L": {
+      "bustCircumference": 38,
+      "totalRows": 148,
+      "maxColumns": 109,
+      "rowsConfig": [
+        { "start": 1, "end": 90, "columns": 109 },
+        { "start": 91, "end": 100, "columns": 109 },
+        { "start": 101, "end": 106, "startColumns": 109, "step": -4 },
+        { "start": 107, "end": 120, "columns": 85 },
+        { "start": 121, "end": 127, "startColumns": 85, "step": -4 },
+        { "start": 128, "end": 138, "columns": 57 },
+        { "start": 139, "end": 148, "columns": 57, "padding": 26 }
+      ],
+      "centerColumn": 55,
+      "centerRow": 74
+    },
+    "XL": {
+      "bustCircumference": 40,
+      "totalRows": 155,
+      "maxColumns": 117,
+      "rowsConfig": [
+        { "start": 1, "end": 95, "columns": 117 },
+        { "start": 96, "end": 105, "columns": 117 },
+        { "start": 106, "end": 112, "startColumns": 117, "step": -4 },
+        { "start": 113, "end": 127, "columns": 89 },
+        { "start": 128, "end": 135, "startColumns": 89, "step": -4 },
+        { "start": 136, "end": 145, "columns": 57 },
+        { "start": 146, "end": 155, "columns": 57, "padding": 30 }
+      ],
+      "centerColumn": 59,
+      "centerRow": 78
+    }
+  },
+  "panelSymmetry": {
+    "frontBackMirrored": true,
+    "horizontalSymmetry": true
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "id": "drop-shoulder-standard",
+  "name": "Drop Shoulder Jumper",
+  "type": "drop-shoulder",
+  "version": "1.0.0",
+  "description": "Relaxed fit jumper with dropped shoulder seams and straight body",
+  "sizes": {
+    "XS": {
+      "bustCircumference": 32,
+      "totalRows": 115,
+      "maxColumns": 91,
+      "rowsConfig": [
+        { "start": 1, "end": 85, "columns": 91 },
+        { "start": 86, "end": 100, "columns": 91 },
+        { "start": 101, "end": 101, "columns": 51, "padding": 20 },
+        { "start": 102, "end": 115, "columns": 51, "padding": 20 }
+      ],
+      "centerColumn": 46,
+      "centerRow": 58
+    },
+    "S": {
+      "bustCircumference": 34,
+      "totalRows": 122,
+      "maxColumns": 97,
+      "rowsConfig": [
+        { "start": 1, "end": 90, "columns": 97 },
+        { "start": 91, "end": 105, "columns": 97 },
+        { "start": 106, "end": 106, "columns": 55, "padding": 21 },
+        { "start": 107, "end": 122, "columns": 55, "padding": 21 }
+      ],
+      "centerColumn": 49,
+      "centerRow": 61
+    },
+    "M": {
+      "bustCircumference": 36,
+      "totalRows": 130,
+      "maxColumns": 107,
+      "rowsConfig": [
+        { "start": 1, "end": 95, "columns": 107 },
+        { "start": 96, "end": 112, "columns": 107 },
+        { "start": 113, "end": 113, "columns": 61, "padding": 23 },
+        { "start": 114, "end": 130, "columns": 61, "padding": 23 }
+      ],
+      "centerColumn": 54,
+      "centerRow": 65
+    },
+    "L": {
+      "bustCircumference": 38,
+      "totalRows": 138,
+      "maxColumns": 115,
+      "rowsConfig": [
+        { "start": 1, "end": 100, "columns": 115 },
+        { "start": 101, "end": 118, "columns": 115 },
+        { "start": 119, "end": 119, "columns": 65, "padding": 25 },
+        { "start": 120, "end": 138, "columns": 65, "padding": 25 }
+      ],
+      "centerColumn": 58,
+      "centerRow": 69
+    },
+    "XL": {
+      "bustCircumference": 40,
+      "totalRows": 145,
+      "maxColumns": 123,
+      "rowsConfig": [
+        { "start": 1, "end": 105, "columns": 123 },
+        { "start": 106, "end": 125, "columns": 123 },
+        { "start": 126, "end": 126, "columns": 69, "padding": 27 },
+        { "start": 127, "end": 145, "columns": 69, "padding": 27 }
+      ],
+      "centerColumn": 62,
+      "centerRow": 73
+    }
+  },
+  "panelSymmetry": {
+    "frontBackMirrored": true,
+    "horizontalSymmetry": true
+  }
+}

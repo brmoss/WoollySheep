@@ -1,0 +1,78 @@
+{
+  "id": "raglan-standard",
+  "name": "Raglan Jumper",
+  "type": "raglan",
+  "version": "1.0.0",
+  "description": "Classic raglan sleeve jumper with diagonal yoke shaping",
+  "sizes": {
+    "XS": {
+      "bustCircumference": 32,
+      "totalRows": 120,
+      "maxColumns": 87,
+      "rowsConfig": [
+        { "start": 1, "end": 80, "columns": 87 },
+        { "start": 81, "end": 81, "columns": 77, "padding": 5 },
+        { "start": 82, "end": 95, "startColumns": 77, "step": -2 },
+        { "start": 96, "end": 120, "columns": 49, "padding": 19 }
+      ],
+      "centerColumn": 44,
+      "centerRow": 60
+    },
+    "S": {
+      "bustCircumference": 34,
+      "totalRows": 128,
+      "maxColumns": 93,
+      "rowsConfig": [
+        { "start": 1, "end": 85, "columns": 93 },
+        { "start": 86, "end": 86, "columns": 83, "padding": 5 },
+        { "start": 87, "end": 102, "startColumns": 83, "step": -2 },
+        { "start": 103, "end": 128, "columns": 51, "padding": 21 }
+      ],
+      "centerColumn": 47,
+      "centerRow": 64
+    },
+    "M": {
+      "bustCircumference": 36,
+      "totalRows": 138,
+      "maxColumns": 107,
+      "rowsConfig": [
+        { "start": 1, "end": 103, "columns": 107 },
+        { "start": 104, "end": 104, "columns": 97, "padding": 5 },
+        { "start": 105, "end": 116, "startColumns": 97, "step": -2 },
+        { "start": 117, "end": 138, "columns": 73, "padding": 17 }
+      ],
+      "centerColumn": 54,
+      "centerRow": 69
+    },
+    "L": {
+      "bustCircumference": 38,
+      "totalRows": 145,
+      "maxColumns": 113,
+      "rowsConfig": [
+        { "start": 1, "end": 108, "columns": 113 },
+        { "start": 109, "end": 109, "columns": 103, "padding": 5 },
+        { "start": 110, "end": 123, "startColumns": 103, "step": -2 },
+        { "start": 124, "end": 145, "columns": 75, "padding": 19 }
+      ],
+      "centerColumn": 57,
+      "centerRow": 73
+    },
+    "XL": {
+      "bustCircumference": 40,
+      "totalRows": 152,
+      "maxColumns": 119,
+      "rowsConfig": [
+        { "start": 1, "end": 113, "columns": 119 },
+        { "start": 114, "end": 114, "columns": 109, "padding": 5 },
+        { "start": 115, "end": 130, "startColumns": 109, "step": -2 },
+        { "start": 131, "end": 152, "columns": 77, "padding": 21 }
+      ],
+      "centerColumn": 60,
+      "centerRow": 76
+    }
+  },
+  "panelSymmetry": {
+    "frontBackMirrored": true,
+    "horizontalSymmetry": true
+  }
+}
