@@ -72,6 +72,49 @@ button:active:not(:disabled), #colorPickerContainer:active {
   color: white;
 }
 
+#exportPNG {
+  background-color: #3F51B5;
+  color: white;
+}
+
+#exportPNG:hover:not(:disabled) {
+  background-color: #303F9F;
+}
+
+#exportPDF {
+  background-color: #E91E63;
+  color: white;
+}
+
+#exportPDF:hover:not(:disabled) {
+  background-color: #C2185B;
+}
+
+#exportText {
+  background-color: #009688;
+  color: white;
+}
+
+#exportText:hover:not(:disabled) {
+  background-color: #00796B;
+}
+
+#fillBtn {
+  background-color: #00BCD4;
+  color: white;
+}
+
+#fillBtn.active {
+  background-color: #0097A7;
+  box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.2);
+  transform: translateY(1px);
+}
+
+/* Fill mode cursor */
+.fill-mode .pixel:not(.non-selectable) {
+  cursor: crosshair;
+}
+
 /* Disabled button states */
 button:disabled {
   background-color: #cccccc !important;
@@ -473,4 +516,135 @@ input[type="color"]::-webkit-color-swatch {
   text-align: center;
   color: #888;
   padding: 20px;
+}
+
+/* Symmetry Controls */
+.symmetry-controls {
+  display: flex;
+  gap: 5px;
+  margin-left: 10px;
+  padding-left: 10px;
+  border-left: 2px solid #ddd;
+}
+
+.mirror-btn {
+  background-color: #795548;
+  color: white;
+}
+
+.mirror-btn:hover:not(:disabled) {
+  background-color: #5D4037;
+}
+
+.mirror-btn.active {
+  background-color: #3E2723;
+  box-shadow: 0 0 0 3px rgba(121, 85, 72, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.3);
+  transform: translateY(1px);
+}
+
+.mirror-btn.active:hover {
+  background-color: #4E342E;
+}
+
+.reflect-btn {
+  background-color: #FF5722;
+  color: white;
+}
+
+.reflect-btn:hover:not(:disabled) {
+  background-color: #E64A19;
+}
+
+.reflect-btn:active:not(:disabled) {
+  background-color: #D84315;
+  transform: translateY(1px);
+}
+
+/* Symmetry center line indicators */
+.symmetry-line-h,
+.symmetry-line-v {
+  position: absolute;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.symmetry-line-h {
+  width: 2px;
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(121, 85, 72, 0.8) 10%,
+    rgba(121, 85, 72, 0.8) 90%,
+    transparent 100%);
+  top: 0;
+  bottom: 0;
+}
+
+.symmetry-line-v {
+  height: 2px;
+  background: linear-gradient(to right,
+    transparent 0%,
+    rgba(121, 85, 72, 0.8) 10%,
+    rgba(121, 85, 72, 0.8) 90%,
+    transparent 100%);
+  left: 0;
+  right: 0;
+}
+
+/* Make canvas-wrapper position relative for symmetry lines */
+#canvas-wrapper {
+  position: relative;
+}
+
+/* Export Modal Styles */
+.export-modal-content {
+  max-width: 700px;
+  width: 95%;
+}
+
+.export-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.export-actions .modal-btn {
+  width: auto;
+  flex: 1;
+}
+
+.download-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.download-btn:hover {
+  background-color: #45a049;
+}
+
+.copy-btn {
+  background-color: #2196F3;
+  color: white;
+}
+
+.copy-btn:hover {
+  background-color: #1976D2;
+}
+
+#instructionsText {
+  width: 100%;
+  height: 400px;
+  padding: 15px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  resize: vertical;
+  box-sizing: border-box;
+  background-color: #fafafa;
+}
+
+#instructionsText:focus {
+  outline: none;
+  border-color: #009688;
 }

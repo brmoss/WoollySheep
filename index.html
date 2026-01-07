@@ -6,6 +6,7 @@
     <title>Knitting Pattern Designer</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
     <div id="controls">
@@ -14,11 +15,21 @@
             <input type="color" id="colorPicker" value="#000000">
         </div>
         <button id="colorPixels">Colour Pixels</button>
+        <button id="fillBtn"><i class="fas fa-fill"></i> Fill</button>
         <button id="clearPattern">Clear Pattern</button>
         <button id="undoBtn" disabled><i class="fas fa-undo"></i> Undo</button>
         <button id="redoBtn" disabled><i class="fas fa-redo"></i> Redo</button>
         <button id="savePattern"><i class="fas fa-save"></i> Save</button>
         <button id="loadPattern"><i class="fas fa-folder-open"></i> Load</button>
+        <button id="exportPNG"><i class="fas fa-download"></i> Export PNG</button>
+        <button id="exportPDF"><i class="fas fa-file-pdf"></i> Export PDF</button>
+        <button id="exportText"><i class="fas fa-file-alt"></i> Export Text</button>
+        <div class="symmetry-controls">
+            <button id="mirrorH" class="mirror-btn" title="Horizontal Mirror mode (left-right)"><i class="fas fa-arrows-alt-h"></i> Mirror H</button>
+            <button id="mirrorV" class="mirror-btn" title="Vertical Mirror mode (top-bottom)"><i class="fas fa-arrows-alt-v"></i> Mirror V</button>
+            <button id="reflectH" class="reflect-btn" title="Reflect existing pattern horizontally"><i class="fas fa-exchange-alt"></i> Reflect H</button>
+            <button id="reflectV" class="reflect-btn" title="Reflect existing pattern vertically"><i class="fas fa-exchange-alt fa-rotate-90"></i> Reflect V</button>
+        </div>
     </div>
 
     <!-- Pattern Manager Modal -->
@@ -61,6 +72,6 @@
         <button id="zoom-reset" title="Reset Zoom (Ctrl/Cmd + 0)">Reset</button>
     </div>
 
-    <script src="script.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>
