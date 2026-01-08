@@ -994,7 +994,7 @@ body.dark-mode .row-label-highlighted {
 }
 
 .sidebar.collapsed {
-  transform: translateX(-250px);
+  transform: translateX(-238px);
 }
 
 .sidebar-header {
