@@ -13,6 +13,17 @@ This document provides context for Claude instances working on this codebase.
 - Switch between different jumper styles and sizes
 - Design both front and back panels
 
+## How to Launch
+
+1. Open a terminal in the project directory
+2. Start a local web server:
+   ```bash
+   python3 -m http.server 8000
+   ```
+3. Open `http://localhost:8000` in your browser
+
+**Note**: A local web server is required because ES modules and `fetch()` don't work via the `file://` protocol.
+
 ## Tech Stack
 
 - **Pure vanilla JavaScript** (ES6 modules)
